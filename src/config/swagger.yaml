@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: FolkSoul
+  description: Platform for musical band, where you can get information about the band and its members.
+  version: 1.0.0
+
+servers:
+  - url: https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Local server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  /login:
+    post:
+      summary: Returns auth token.
+      tags:
+        - 'Auth'
+      requestBody:
+        description: A JSON object containing user nickname and password
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - 'nickname'
+                - 'password'
+              properties:
+                nickname:
+                  type: string
+                  minLength: 3
+                  pattern: '^[a-zA-Z0-9]{3,}$'
+                  example: zazaevich
+                password:
+                  type: string
+                  format: password
+                  minLength: 3
+                  example: motoburti
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                example:
+                  token: xxxxx.yyyyy.zzzzz
+        '422':
+          description: Invalid credentials

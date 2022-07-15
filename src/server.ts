@@ -2,8 +2,9 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import dotenv from 'dotenv'
 
-import { apiRoutes } from 'routes'
+import { swaggerMiddleware } from 'middlewares'
 import { connectMongo } from 'config'
+import { apiRoutes } from 'routes'
 
 const server = express()
 dotenv.config()
@@ -12,5 +13,6 @@ connectMongo()
 server.use(bodyParser.json())
 
 server.use('/api', apiRoutes)
+server.use('/api-docs', swaggerMiddleware())
 
 server.listen(process.env.SERVER_PORT || 3000)
