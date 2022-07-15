@@ -39,7 +39,7 @@ interface UserData {
   password: string
 }
 
-const createUserSchema = async (data: UserData) => {
+const createUserSchema = async (data: UserData): Promise<Joi.ObjectSchema> => {
   const { nickname, password } = data
 
   let user: IUser | null = null

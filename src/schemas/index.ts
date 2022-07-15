@@ -1,1 +1,5 @@
-export { nicknameSchema, passwordSchema } from './user-schema'
+export {
+  default as createUserSchema,
+  nicknameSchema,
+  passwordSchema,
+} from './user-schema'
