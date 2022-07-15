@@ -3,3 +3,6 @@ node_modules
 
 # Compiled scripts
 build
+
+# Environment variables
+.env
