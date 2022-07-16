@@ -140,3 +140,17 @@ paths:
           description: Member doesn't exist
         '422':
           description: Invalid data
+
+    delete:
+      summary: Deletes exisitng member.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/bandMemberQuery'
+      tags:
+        - 'Band Members'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Member doesn't exist
