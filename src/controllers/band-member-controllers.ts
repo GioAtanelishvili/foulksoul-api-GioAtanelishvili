@@ -1,10 +1,10 @@
-import express from 'express'
+import { RequestHandler } from 'express'
 
 import { bandMemberSchema } from 'schemas'
 import { validateObjectId } from 'utils'
 import { BandMember } from 'models'
 
-export const addBandMember: express.RequestHandler = async (req, res, next) => {
+export const addBandMember: RequestHandler = async (req, res, next) => {
   const { value, error } = bandMemberSchema.validate(req.body)
 
   if (error) {
@@ -21,11 +21,7 @@ export const addBandMember: express.RequestHandler = async (req, res, next) => {
   }
 }
 
-export const editBandMember: express.RequestHandler = async (
-  req,
-  res,
-  next
-) => {
+export const editBandMember: RequestHandler = async (req, res, next) => {
   const { id: bandMemberId } = req.query
 
   const { value: data, error } = bandMemberSchema.validate(req.body)
@@ -46,6 +42,24 @@ export const editBandMember: express.RequestHandler = async (
     const editedBandMember = Object.assign(bandMember, data)
     await editedBandMember.save()
     return res.status(200).json('Member was updated sucessfully.')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const deleteBandMember: RequestHandler = async (req, res, next) => {
+  const { id: bandMemberId } = req.query
+
+  try {
+    validateObjectId(bandMemberId as string)
+
+    const bandMember = await BandMember.findByIdAndDelete(bandMemberId)
+
+    if (!bandMember) {
+      return res.status(404).json("Member with such ID doesn't exist.")
+    }
+
+    return res.status(200).json('Member was deleted successfully')
   } catch (err) {
     next(err)
   }
