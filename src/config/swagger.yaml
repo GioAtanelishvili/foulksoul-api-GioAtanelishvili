@@ -17,6 +17,39 @@ components:
       scheme: bearer
       bearerFormat: JWT
 
+  schemas:
+    BandMember:
+      type: object
+      required:
+        - 'name'
+        - 'instrument'
+        - 'orbitRadius'
+        - 'color'
+        - 'biography'
+      properties:
+        name:
+          type: string
+          example: ბაბნიკა
+          minLength: 3
+          pattern: ^[\u10D0-\u10F0]+$
+        instrument:
+          type: string
+          example: უკულელე
+          minLength: 2
+          pattern: ^[\u10D0-\u10F0]+$
+        orbitRadius:
+          type: number
+          example: 6
+          minimum: 0
+        color:
+          type: string
+          example: '#F12AC7'
+          pattern: ^#([0-9a-fA-F]){6}$
+        biography:
+          type: string
+          example: ბიოგრაფია
+          pattern: ^[\u10D0-\u10F0]+$
+
 paths:
   /login:
     post:
@@ -57,3 +90,22 @@ paths:
                   token: xxxxx.yyyyy.zzzzz
         '422':
           description: Invalid credentials
+
+  /band/member:
+    post:
+      summary: Adds new member to band.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Band Member'
+      requestBody:
+        description: A JSON object containing details about new member.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BandMember'
+      responses:
+        '201':
+          description: OK
+        '422':
+          description: Invalid data
