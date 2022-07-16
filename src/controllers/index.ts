@@ -1,2 +1,2 @@
 export { login } from './auth-controller'
-export { addBandMember } from './band-member-controllers'
+export { addBandMember, editBandMember } from './band-member-controllers'
