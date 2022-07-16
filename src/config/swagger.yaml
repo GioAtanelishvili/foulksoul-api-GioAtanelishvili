@@ -17,6 +17,15 @@ components:
       scheme: bearer
       bearerFormat: JWT
 
+  parameters:
+    bandMemberQuery:
+      in: query
+      name: id
+      required: true
+      schema:
+        type: string
+      description: Band member ID
+
   schemas:
     BandMember:
       type: object
@@ -57,7 +66,7 @@ paths:
       tags:
         - 'Auth'
       requestBody:
-        description: A JSON object containing user nickname and password
+        description: A JSON object containing user nickname and password.
         content:
           application/json:
             schema:
@@ -97,7 +106,7 @@ paths:
       security:
         - bearerAuth: []
       tags:
-        - 'Band Member'
+        - 'Band Members'
       requestBody:
         description: A JSON object containing details about new member.
         content:
@@ -107,5 +116,27 @@ paths:
       responses:
         '201':
           description: OK
+        '422':
+          description: Invalid data
+
+    patch:
+      summary: Edits exisitng member.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/bandMemberQuery'
+      tags:
+        - 'Band Members'
+      requestBody:
+        description: A JSON object containing details about member.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BandMember'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Member doesn't exist
         '422':
           description: Invalid data
