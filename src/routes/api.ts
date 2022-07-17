@@ -9,6 +9,7 @@ import {
   addSocialMedia,
   editSocialMedia,
   deleteSocialMedia,
+  uploadIcon,
 } from 'controllers'
 import { authMiddleware, fileHandlerMiddleware } from 'middlewares'
 
@@ -24,12 +25,22 @@ router
   .patch(editBandMember)
   .delete(deleteBandMember)
 
-router.post('/band/member/avatar', fileHandlerMiddleware(), uploadAvatar)
+router.post(
+  '/band/member/avatar',
+  fileHandlerMiddleware('avatar'),
+  uploadAvatar
+)
 
 router
   .route('/band/social-media')
   .post(addSocialMedia)
   .patch(editSocialMedia)
   .delete(deleteSocialMedia)
+
+router.post(
+  '/band/social-media/icon',
+  fileHandlerMiddleware('icon'),
+  uploadIcon
+)
 
 export default router

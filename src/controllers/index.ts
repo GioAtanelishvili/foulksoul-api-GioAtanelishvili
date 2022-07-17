@@ -10,3 +10,4 @@ export {
   editSocialMedia,
   deleteSocialMedia,
 } from './social-media-controllers'
+export { uploadIcon } from './icon-controllers'
