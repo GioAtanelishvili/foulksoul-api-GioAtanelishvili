@@ -7,6 +7,9 @@ import { SocialMedia } from 'models'
 export const uploadIcon: RequestHandler = async (req, res, next) => {
   const { file } = req
 
+  let statusCode = 201
+  let message = 'Icon was added successfully.'
+
   if (!file) {
     return res.status(422).json('Uploaded file is invalid.')
   }
@@ -23,13 +26,16 @@ export const uploadIcon: RequestHandler = async (req, res, next) => {
     }
 
     if (socialMedia.iconPath) {
+      statusCode = 200
+      message = 'Icon was updated successfully.'
+
       const { iconPath: prevIconPath } = socialMedia
       await unlink(prevIconPath)
     }
 
     socialMedia.iconPath = file.path
     await socialMedia.save()
-    return res.status(200).json('Icon was added successfully.')
+    return res.status(statusCode).json(message)
   } catch (err) {
     next(err)
   }

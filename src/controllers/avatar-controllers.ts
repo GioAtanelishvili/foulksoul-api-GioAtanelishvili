@@ -7,6 +7,9 @@ import { validateObjectId } from 'utils'
 export const uploadAvatar: RequestHandler = async (req, res, next) => {
   const { file } = req
 
+  let statusCode = 201
+  let message = 'Avatar was added successfully.'
+
   if (!file) {
     return res.status(422).json('Uploaded file is invalid.')
   }
@@ -23,13 +26,16 @@ export const uploadAvatar: RequestHandler = async (req, res, next) => {
     }
 
     if (bandMember.avatarPath) {
+      statusCode = 200
+      message = 'Avatar was updated successfully.'
+
       const { avatarPath: prevAvatarPath } = bandMember
       await unlink(prevAvatarPath)
     }
 
     bandMember.avatarPath = file.path
     await bandMember.save()
-    return res.status(200).json('Avatar was added succesfully.')
+    return res.status(statusCode).json(message)
   } catch (err) {
     next(err)
   }

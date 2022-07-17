@@ -187,7 +187,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/bandMemberQuery'
       tags:
-        - 'Avatar'
+        - 'Band Members'
       requestBody:
         required: true
         description: Band member's avatar image (png/jpg/jpeg).
