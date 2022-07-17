@@ -263,3 +263,31 @@ paths:
           description: OK
         '404':
           description: Social media doesn't exist
+
+  /band/social-media/icon:
+    post:
+      summary: Uploads social media icon.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/socialMediaQuery'
+      tags:
+        - 'Social Media'
+      requestBody:
+        required: true
+        description: Social media icon (png/jpg/jpeg).
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - 'icon'
+              properties:
+                icon:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+        '422':
+          description: Invalid file
