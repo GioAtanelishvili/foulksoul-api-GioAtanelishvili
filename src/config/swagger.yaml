@@ -249,3 +249,17 @@ paths:
           description: Social media doesn't exist
         '422':
           description: Invalid data
+
+    delete:
+      summary: Deletes existing social media.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/socialMediaQuery'
+      tags:
+        - 'Social Media'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Social media doesn't exist
