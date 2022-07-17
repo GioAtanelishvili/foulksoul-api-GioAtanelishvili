@@ -59,6 +59,22 @@ components:
           example: ბიოგრაფია
           pattern: ^[\u10D0-\u10F0]+$
 
+    SocialMedia:
+      type: object
+      required:
+        - 'name'
+        - 'url'
+      properties:
+        name:
+          type: string
+          example: Facebook
+          minLength: 2
+          pattern: ^[a-zA-Z0-9]+$
+        url:
+          type: string
+          example: https://facebook.com
+          format: uri
+
 paths:
   /login:
     post:
@@ -157,7 +173,7 @@ paths:
 
   /band/member/avatar:
     post:
-      summary: Uploads band member's avatar
+      summary: Uploads band member's avatar.
       security:
         - bearerAuth: []
       parameters:
@@ -166,6 +182,7 @@ paths:
         - 'Avatar'
       requestBody:
         required: true
+        description: Band member's avatar image (png/jpg/jpeg).
         content:
           multipart/form-data:
             schema:
@@ -181,3 +198,23 @@ paths:
           description: OK
         '422':
           description: Invalid file
+
+  /band/social-media:
+    post:
+      summary: Adds new social media.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Social Media'
+      requestBody:
+        required: true
+        description: JSON object containing info about social media.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialMedia'
+      responses:
+        '201':
+          description: OK
+        '422':
+          description: Invalid data
