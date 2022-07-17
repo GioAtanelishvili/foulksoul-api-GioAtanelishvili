@@ -6,6 +6,7 @@ import {
   editBandMember,
   deleteBandMember,
   uploadAvatar,
+  addSocialMedia,
 } from 'controllers'
 import { authMiddleware, fileHandlerMiddleware } from 'middlewares'
 
@@ -22,5 +23,7 @@ router
   .delete(deleteBandMember)
 
 router.post('/band/member/avatar', fileHandlerMiddleware(), uploadAvatar)
+
+router.route('/band/social-media').post(addSocialMedia)
 
 export default router
