@@ -26,6 +26,14 @@ components:
         type: string
       description: Band member ID
 
+    socialMediaQuery:
+      in: query
+      name: id
+      required: true
+      schema:
+        type: string
+      description: Social media ID
+
   schemas:
     BandMember:
       type: object
@@ -216,5 +224,28 @@ paths:
       responses:
         '201':
           description: OK
+        '422':
+          description: Invalid data
+
+    patch:
+      summary: Edits existing social media.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/socialMediaQuery'
+      tags:
+        - 'Social Media'
+      requestBody:
+        required: true
+        description: JSON object containing info about social media.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialMedia'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Social media doesn't exist
         '422':
           description: Invalid data
