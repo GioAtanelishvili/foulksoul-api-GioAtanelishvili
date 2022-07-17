@@ -5,4 +5,8 @@ export {
   deleteBandMember,
 } from './band-member-controllers'
 export { uploadAvatar } from './avatar-controllers'
-export { addSocialMedia, editSocialMedia } from './social-media-controllers'
+export {
+  addSocialMedia,
+  editSocialMedia,
+  deleteSocialMedia,
+} from './social-media-controllers'
