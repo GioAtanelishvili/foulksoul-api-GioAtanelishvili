@@ -4,3 +4,4 @@ export {
   editBandMember,
   deleteBandMember,
 } from './band-member-controllers'
+export { uploadAvatar } from './avatar-controllers'

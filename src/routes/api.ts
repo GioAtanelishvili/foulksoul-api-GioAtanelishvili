@@ -5,8 +5,9 @@ import {
   addBandMember,
   editBandMember,
   deleteBandMember,
+  uploadAvatar,
 } from 'controllers'
-import { authMiddleware } from 'middlewares'
+import { authMiddleware, fileHandlerMiddleware } from 'middlewares'
 
 const router = Router()
 
@@ -19,5 +20,7 @@ router
   .post(addBandMember)
   .patch(editBandMember)
   .delete(deleteBandMember)
+
+router.post('/band/member/avatar', fileHandlerMiddleware(), uploadAvatar)
 
 export default router
