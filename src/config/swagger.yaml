@@ -154,3 +154,30 @@ paths:
           description: OK
         '404':
           description: Member doesn't exist
+
+  /band/member/avatar:
+    post:
+      summary: Uploads band member's avatar
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/bandMemberQuery'
+      tags:
+        - 'Avatar'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - 'avatar'
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+        '422':
+          description: Invalid file
