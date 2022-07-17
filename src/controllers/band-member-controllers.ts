@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express'
+import { unlink } from 'fs/promises'
 
 import { bandMemberSchema } from 'schemas'
 import { validateObjectId } from 'utils'
@@ -57,6 +58,12 @@ export const deleteBandMember: RequestHandler = async (req, res, next) => {
 
     if (!bandMember) {
       return res.status(404).json("Member with such ID doesn't exist.")
+    }
+
+    const { avatarPath } = bandMember
+
+    if (avatarPath) {
+      await unlink(avatarPath)
     }
 
     return res.status(200).json('Member was deleted successfully')
