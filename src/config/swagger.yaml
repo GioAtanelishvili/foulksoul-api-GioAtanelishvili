@@ -291,3 +291,28 @@ paths:
           description: OK
         '422':
           description: Invalid file
+
+  /band/info:
+    patch:
+      summary: Adds info about the band.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Band'
+      requestBody:
+        description: A JSON object containing info about the band.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                info:
+                  type: string
+                  example: Some infomration about the band
+              required:
+                - 'info'
+      responses:
+        '200':
+          description: OK
+        '422':
+          description: Invalid data
