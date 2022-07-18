@@ -124,6 +124,34 @@ paths:
         '422':
           description: Invalid credentials
 
+  /band/members:
+    get:
+      summary: Returns all members of the band.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Band Members'
+      responses:
+        '200':
+          description: A JSON array containing all members of the band.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                    - type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: some-ID
+                    - $ref: '#/components/schemas/BandMember'
+                    - type: object
+                      properties:
+                        avatarPath:
+                          type: string
+                          example: path/to/avatar.png
+
   /band/member:
     post:
       summary: Adds new member to band.
@@ -323,7 +351,7 @@ paths:
       security:
         - bearerAuth: []
       tags:
-        - 'Band'
+        - 'Band Details'
       requestBody:
         required: true
         description: Band image (png/jpg/jpeg).
