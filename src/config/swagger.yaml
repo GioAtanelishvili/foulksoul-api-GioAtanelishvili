@@ -316,3 +316,29 @@ paths:
           description: OK
         '422':
           description: Invalid data
+
+  /band/image:
+    post:
+      summary: Uploads band image.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Band'
+      requestBody:
+        required: true
+        description: Band image (png/jpg/jpeg).
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - 'image'
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+        '422':
+          description: Invalid file
