@@ -2,6 +2,7 @@ import { Router } from 'express'
 
 import {
   login,
+  getAllBandMembers,
   addBandMember,
   editBandMember,
   deleteBandMember,
@@ -20,6 +21,8 @@ const router = Router()
 router.post('/login', login)
 
 router.use(authMiddleware)
+
+router.get('/band/members', getAllBandMembers)
 
 router
   .route('/band/member')

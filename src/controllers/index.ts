@@ -1,5 +1,6 @@
 export { login } from './auth-controllers'
 export {
+  getAllBandMembers,
   addBandMember,
   editBandMember,
   deleteBandMember,

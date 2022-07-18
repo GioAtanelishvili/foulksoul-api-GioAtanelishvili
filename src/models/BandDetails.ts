@@ -9,10 +9,12 @@ const bandDetailsSchema = new Schema<IBandDetails>({
   info: {
     type: String,
     required: false,
+    default: '',
   },
   imagePath: {
     type: String,
     required: false,
+    default: '',
   },
 })
 

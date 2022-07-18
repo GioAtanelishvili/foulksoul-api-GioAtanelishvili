@@ -18,6 +18,7 @@ const socialMediaSchema = new Schema<ISocialMedia>({
   iconPath: {
     type: String,
     required: false,
+    default: '',
   },
 })
 

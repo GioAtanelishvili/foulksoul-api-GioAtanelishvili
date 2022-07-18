@@ -34,6 +34,7 @@ const bandMemberSchema = new Schema<IBandMember>({
   avatarPath: {
     type: String,
     required: false,
+    default: '',
   },
   userId: {
     type: Schema.Types.ObjectId,

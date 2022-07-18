@@ -5,6 +5,16 @@ import { bandMemberSchema } from 'schemas'
 import { validateObjectId } from 'utils'
 import { BandMember } from 'models'
 
+export const getAllBandMembers: RequestHandler = async (_req, res, next) => {
+  try {
+    const bandMembers = await BandMember.find({}, '-__v')
+
+    return res.status(200).json(bandMembers)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const addBandMember: RequestHandler = async (req, res, next) => {
   const { value, error } = bandMemberSchema.validate(req.body)
 
