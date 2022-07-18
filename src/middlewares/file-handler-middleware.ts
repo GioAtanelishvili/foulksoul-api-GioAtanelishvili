@@ -4,12 +4,21 @@ import multer from 'multer'
 const storage = multer.diskStorage({
   destination(req, _file, callback) {
     let destination
-    if (req.path === '/band/member/avatar') {
-      destination = join('build', 'uploads', 'avatars')
-    } else {
-      destination = join('build', 'uploads', 'icons')
+
+    switch (req.path) {
+      case '/band/member/avatar':
+        destination = join('build', 'uploads', 'band-members-avatars')
+        break
+      case '/band/social-media/icon':
+        destination = join('build', 'uploads', 'social-media-icons')
+        break
+      case '/band/image':
+        destination = join('build', 'uploads', 'band-image')
     }
-    callback(null, destination)
+
+    if (destination) {
+      callback(null, destination)
+    }
   },
   filename(_req, file, callback) {
     const uniqueSuffix = Date.now()
@@ -35,7 +44,7 @@ const fileFilter = (
 
 const upload = multer({ storage, fileFilter })
 
-const fileHandlerMiddleware = (fieldName: 'avatar' | 'icon') => {
+const fileHandlerMiddleware = (fieldName: 'avatar' | 'icon' | 'image') => {
   return upload.single(fieldName)
 }
 

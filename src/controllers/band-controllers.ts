@@ -1,7 +1,8 @@
 import { RequestHandler } from 'express'
-import { Band } from 'models'
+import { unlink } from 'fs/promises'
 
 import { bandInfoSchema } from 'schemas'
+import { Band } from 'models'
 
 export const editBandInfo: RequestHandler = async (req, res, next) => {
   const { info: bandInfo } = req.body
@@ -24,6 +25,30 @@ export const editBandInfo: RequestHandler = async (req, res, next) => {
     }
 
     return res.status(200).json('Band info was updated successfully')
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const uploadBandImage: RequestHandler = async (req, res, next) => {
+  const { file } = req
+
+  if (!file) {
+    return res.status(422).json('Uploaded file is invalid.')
+  }
+
+  try {
+    const [band] = (await Band.find()) || new Band({ imagePath: file.path })
+
+    if (band.imagePath) {
+      const { imagePath: prevImagePath } = band
+      await unlink(prevImagePath)
+    } else {
+      band.imagePath = file.path
+    }
+
+    await band.save()
+    return res.status(200).json('Band image was added successfully')
   } catch (err) {
     next(err)
   }
