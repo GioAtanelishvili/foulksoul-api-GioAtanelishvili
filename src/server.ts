@@ -12,6 +12,7 @@ dotenv.config()
 connectMongo()
 
 server.use(bodyParser.json())
+server.use(express.static('build/uploads'))
 
 server.use('/api', cors(), apiRoutes)
 server.use('/api-docs', swaggerMiddleware())

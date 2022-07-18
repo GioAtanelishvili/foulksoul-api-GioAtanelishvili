@@ -7,13 +7,13 @@ const storage = multer.diskStorage({
 
     switch (req.path) {
       case '/band/member/avatar':
-        destination = join('build', 'uploads', 'band-members-avatars')
+        destination = join('build', 'uploads', 'band', 'member')
         break
       case '/band/social-media/icon':
-        destination = join('build', 'uploads', 'social-media-icons')
+        destination = join('build', 'uploads', 'band', 'social-media')
         break
       case '/band/image':
-        destination = join('build', 'uploads', 'band-image')
+        destination = join('build', 'uploads', 'band')
     }
 
     if (destination) {

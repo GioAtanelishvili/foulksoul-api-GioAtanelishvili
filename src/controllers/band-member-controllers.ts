@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
+import { validateObjectId, extractImagePath, recoverImagePath } from 'utils'
 import { bandMemberSchema } from 'schemas'
-import { validateObjectId } from 'utils'
 import { BandMember } from 'models'
 
 export const getAllBandMembers: RequestHandler = async (_req, res, next) => {
@@ -102,10 +102,12 @@ export const uploadAvatar: RequestHandler = async (req, res, next) => {
 
     if (bandMember.avatarPath) {
       const { avatarPath: prevAvatarPath } = bandMember
-      await unlink(prevAvatarPath)
+
+      const recoveredPath = recoverImagePath(prevAvatarPath)
+      await unlink(recoveredPath)
     }
 
-    bandMember.avatarPath = file.path
+    bandMember.avatarPath = extractImagePath(file.path)
     await bandMember.save()
     return res.status(200).json('Avatar was updated successfully.')
   } catch (err) {

@@ -2,6 +2,7 @@ import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
 import { socialMediaSchema } from 'schemas'
+import { extractImagePath, recoverImagePath } from 'utils'
 import { validateObjectId } from 'utils'
 import { SocialMedia } from 'models'
 
@@ -91,10 +92,12 @@ export const uploadIcon: RequestHandler = async (req, res, next) => {
 
     if (socialMedia.iconPath) {
       const { iconPath: prevIconPath } = socialMedia
-      await unlink(prevIconPath)
+
+      const recoveredPath = recoverImagePath(prevIconPath)
+      await unlink(recoveredPath)
     }
 
-    socialMedia.iconPath = file.path
+    socialMedia.iconPath = extractImagePath(file.path)
     await socialMedia.save()
     return res.status(200).json('Icon was updated successfully.')
   } catch (err) {
