@@ -7,7 +7,6 @@ export interface IBandMember {
   color: string
   biography: string
   avatarPath: string
-  userId: Schema.Types.ObjectId
 }
 
 const bandMemberSchema = new Schema<IBandMember>({
@@ -35,10 +34,6 @@ const bandMemberSchema = new Schema<IBandMember>({
     type: String,
     required: false,
     default: '',
-  },
-  userId: {
-    type: Schema.Types.ObjectId,
-    required: true,
   },
 })
 

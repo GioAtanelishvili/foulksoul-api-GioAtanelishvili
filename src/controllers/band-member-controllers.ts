@@ -22,7 +22,7 @@ export const addBandMember: RequestHandler = async (req, res, next) => {
     return res.status(422).json(error.details)
   }
 
-  const bandMember = new BandMember({ ...value, userId: req.userId! })
+  const bandMember = new BandMember(value)
 
   try {
     await bandMember.save()
