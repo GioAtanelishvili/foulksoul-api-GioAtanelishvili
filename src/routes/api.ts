@@ -27,26 +27,16 @@ router
   .patch(editBandMember)
   .delete(deleteBandMember)
 
-router.post(
-  '/band/member/avatar',
-  fileHandlerMiddleware('avatar'),
-  uploadAvatar
-)
-
 router
   .route('/band/social-media')
   .post(addSocialMedia)
   .patch(editSocialMedia)
   .delete(deleteSocialMedia)
 
-router.post(
-  '/band/social-media/icon',
-  fileHandlerMiddleware('icon'),
-  uploadIcon
-)
+router.put('/band/info', editBandInfo)
 
-router.route('/band/info').patch(editBandInfo)
-
-router.post('/band/image', fileHandlerMiddleware('image'), uploadBandImage)
+router.put('/band/member/avatar', fileHandlerMiddleware('avatar'), uploadAvatar)
+router.put('/band/social-media/icon', fileHandlerMiddleware('icon'), uploadIcon)
+router.put('/band/image', fileHandlerMiddleware('image'), uploadBandImage)
 
 export default router

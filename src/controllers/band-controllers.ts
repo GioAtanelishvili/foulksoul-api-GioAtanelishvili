@@ -2,7 +2,7 @@ import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
 import { bandInfoSchema } from 'schemas'
-import { Band } from 'models'
+import { BandDetails } from 'models'
 
 export const editBandInfo: RequestHandler = async (req, res, next) => {
   const { info: bandInfo } = req.body
@@ -14,13 +14,13 @@ export const editBandInfo: RequestHandler = async (req, res, next) => {
   }
 
   try {
-    const [prevBand] = await Band.find()
+    const [prevBand] = await BandDetails.find()
 
     if (prevBand) {
       const editedBand = Object.assign(prevBand, { info })
       await editedBand.save()
     } else {
-      const band = new Band({ info })
+      const band = new BandDetails({ info })
       await band.save()
     }
 
@@ -38,7 +38,8 @@ export const uploadBandImage: RequestHandler = async (req, res, next) => {
   }
 
   try {
-    const [band] = (await Band.find()) || new Band({ imagePath: file.path })
+    const [band] =
+      (await BandDetails.find()) || new BandDetails({ imagePath: file.path })
 
     if (band.imagePath) {
       const { imagePath: prevImagePath } = band

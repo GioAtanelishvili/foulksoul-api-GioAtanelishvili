@@ -3,12 +3,12 @@ export {
   addBandMember,
   editBandMember,
   deleteBandMember,
+  uploadAvatar,
 } from './band-member-controllers'
-export { uploadAvatar } from './avatar-controllers'
 export {
   addSocialMedia,
   editSocialMedia,
   deleteSocialMedia,
+  uploadIcon,
 } from './social-media-controllers'
-export { uploadIcon } from './icon-controllers'
 export { editBandInfo, uploadBandImage } from './band-controllers'

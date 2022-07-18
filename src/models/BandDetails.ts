@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose'
 
-export interface IBand {
+export interface IBandDetails {
   info: string
   imagePath: string
 }
 
-const bandSchema = new Schema<IBand>({
+const bandDetailsSchema = new Schema<IBandDetails>({
   info: {
     type: String,
     required: false,
@@ -16,6 +16,6 @@ const bandSchema = new Schema<IBand>({
   },
 })
 
-const Band = model('Band', bandSchema)
+const BandDetails = model('BandDetails', bandDetailsSchema)
 
-export default Band
+export default BandDetails

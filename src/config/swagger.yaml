@@ -180,7 +180,7 @@ paths:
           description: Member doesn't exist
 
   /band/member/avatar:
-    post:
+    put:
       summary: Uploads band member's avatar.
       security:
         - bearerAuth: []
@@ -265,7 +265,7 @@ paths:
           description: Social media doesn't exist
 
   /band/social-media/icon:
-    post:
+    put:
       summary: Uploads social media icon.
       security:
         - bearerAuth: []
@@ -293,12 +293,12 @@ paths:
           description: Invalid file
 
   /band/info:
-    patch:
+    put:
       summary: Adds info about the band.
       security:
         - bearerAuth: []
       tags:
-        - 'Band'
+        - 'Band Details'
       requestBody:
         description: A JSON object containing info about the band.
         content:
@@ -318,7 +318,7 @@ paths:
           description: Invalid data
 
   /band/image:
-    post:
+    put:
       summary: Uploads band image.
       security:
         - bearerAuth: []
