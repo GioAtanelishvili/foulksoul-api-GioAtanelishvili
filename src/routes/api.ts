@@ -10,6 +10,7 @@ import {
   editSocialMedia,
   deleteSocialMedia,
   uploadIcon,
+  editBandInfo,
 } from 'controllers'
 import { authMiddleware, fileHandlerMiddleware } from 'middlewares'
 
@@ -42,5 +43,7 @@ router.post(
   fileHandlerMiddleware('icon'),
   uploadIcon
 )
+
+router.route('/band/info').patch(editBandInfo)
 
 export default router
