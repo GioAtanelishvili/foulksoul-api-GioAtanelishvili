@@ -11,6 +11,7 @@ import {
   editSocialMedia,
   deleteSocialMedia,
   uploadIcon,
+  getBandDetails,
   editBandInfo,
   uploadBandImage,
 } from 'controllers'
@@ -36,6 +37,7 @@ router
   .patch(editSocialMedia)
   .delete(deleteSocialMedia)
 
+router.get('/band', getBandDetails)
 router.put('/band/info', editBandInfo)
 
 router.put('/band/member/avatar', fileHandlerMiddleware('avatar'), uploadAvatar)

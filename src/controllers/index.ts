@@ -12,4 +12,8 @@ export {
   deleteSocialMedia,
   uploadIcon,
 } from './social-media-controllers'
-export { editBandInfo, uploadBandImage } from './band-controllers'
+export {
+  getBandDetails,
+  editBandInfo,
+  uploadBandImage,
+} from './band-controllers'

@@ -320,6 +320,28 @@ paths:
         '422':
           description: Invalid file
 
+  /band:
+    get:
+      summary: Returns details about band.
+      security:
+        - bearerAuth: []
+      tags:
+        - 'Band Details'
+      responses:
+        '200':
+          description: A JSON object containing band info and image path.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: ინფორმაცია ბენდის შესახებ
+                  imagePath:
+                    type: string
+                    example: path/to/image.png
+
   /band/info:
     put:
       summary: Adds info about the band.

@@ -4,6 +4,16 @@ import { unlink } from 'fs/promises'
 import { bandInfoSchema } from 'schemas'
 import { BandDetails } from 'models'
 
+export const getBandDetails: RequestHandler = async (_req, res, next) => {
+  try {
+    const [bandDetails] = await BandDetails.find({}, '-__v')
+
+    return res.status(200).json(bandDetails)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const editBandInfo: RequestHandler = async (req, res, next) => {
   const { info: bandInfo } = req.body
 
