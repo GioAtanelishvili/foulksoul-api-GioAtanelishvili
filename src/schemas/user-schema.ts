@@ -6,6 +6,7 @@ import { User, IUser } from 'models'
 export const nicknameSchema = Joi.string()
   .required()
   .min(3)
+  .trim()
   .alphanum()
   .lowercase()
   .messages({
@@ -16,7 +17,7 @@ export const nicknameSchema = Joi.string()
     'string.lowercase': 'User nickname should contain only lowercase letters.',
   })
 
-export const passwordSchema = Joi.string().required().min(3).messages({
+export const passwordSchema = Joi.string().required().trim().min(3).messages({
   'string.base': 'Password should be a string.',
   'string.required': 'Password id required.',
   'string.min': 'Password should be at least 3 chars long.',

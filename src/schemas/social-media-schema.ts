@@ -1,7 +1,7 @@
 import Joi from 'joi'
 
 const socialMediaSchema = Joi.object({
-  name: Joi.string().required().lowercase().alphanum().min(2).messages({
+  name: Joi.string().required().lowercase().trim().alphanum().min(2).messages({
     'string.base': 'Social media name should be a string.',
     'string.required': 'Social media name is required.',
     'string.alphanum': 'Social media name should be alphanumeric.',
