@@ -5,9 +5,20 @@ import { validateObjectId, extractImagePath, recoverImagePath } from 'utils'
 import { bandMemberSchema } from 'schemas'
 import { BandMember } from 'models'
 
-export const getAllBandMembers: RequestHandler = async (_req, res, next) => {
+const MEMBER_PER_PAGE = 3
+
+export const getAllBandMembers: RequestHandler = async (req, res, next) => {
+  const page = Number(req.query.page)
+  let bandMembers
+
   try {
-    const bandMembers = await BandMember.find({}, '-__v')
+    if (page) {
+      bandMembers = await BandMember.find({}, '-__v')
+        .skip((page - 1) * MEMBER_PER_PAGE)
+        .limit(MEMBER_PER_PAGE)
+    } else {
+      bandMembers = await BandMember.find({}, '-__v')
+    }
 
     return res.status(200).json(bandMembers)
   } catch (err) {

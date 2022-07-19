@@ -34,6 +34,13 @@ components:
         type: string
       description: Social media ID
 
+    pageQuery:
+      in: query
+      name: page
+      schema:
+        type: number
+      description: Page number
+
   schemas:
     BandMember:
       type: object
@@ -127,6 +134,8 @@ paths:
   /band/members:
     get:
       summary: Returns all members of the band.
+      parameters:
+        - $ref: '#/components/parameters/pageQuery'
       security:
         - bearerAuth: []
       tags:

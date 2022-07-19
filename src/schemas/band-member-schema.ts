@@ -10,7 +10,7 @@ const bandMemberSchema = Joi.object({
       'string.base': "Band member's name should be a string.",
       'string.required': "Band member's name is required.",
       'string.min': "Band member's name should be at least 3 chars long.",
-      'string.pattern':
+      'string.pattern.base':
         "Band member's name should contain only Georgian letters.",
     }),
   instrument: Joi.string()
@@ -22,7 +22,7 @@ const bandMemberSchema = Joi.object({
       'string.base': 'Instrument field should be a string.',
       'string.required': 'Instrument field is required.',
       'string.min': 'Instrument field should be at least 3 chars long.',
-      'string.pattern':
+      'string.pattern.base':
         'Instrument field should contain only Georgian letters.',
     }),
   orbitRadius: Joi.number().required().positive().messages({
@@ -40,7 +40,7 @@ const bandMemberSchema = Joi.object({
       'string.base': 'Color should be a string.',
       'string.required': 'Color is required.',
       'string.min': 'Color value should be 7 chars long.',
-      'string.pattern': 'Color value should match Hex color code format.',
+      'string.pattern.base': 'Color value should match Hex color code format.',
     }),
   biography: Joi.string()
     .required()
@@ -51,7 +51,7 @@ const bandMemberSchema = Joi.object({
     .messages({
       'string.base': 'Biography should be a string.',
       'string.required': 'Biography is required.',
-      'string.pattern': 'Biography should contain only Georgian letters.',
+      'string.pattern.base': 'Biography should contain only Georgian letters.',
     }),
 })
 
