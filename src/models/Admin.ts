@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose'
 
-export interface IUser {
+export interface IAdmin {
   nickname: string
   password: string
 }
 
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IAdmin>({
   nickname: {
     type: String,
     required: true,
@@ -16,6 +16,6 @@ const userSchema = new Schema<IUser>({
   },
 })
 
-const User = model<IUser>('User', userSchema)
+const Admin = model<IAdmin>('Admin', userSchema)
 
-export default User
+export default Admin

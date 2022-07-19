@@ -90,7 +90,7 @@ paths:
       tags:
         - 'Auth'
       requestBody:
-        description: A JSON object containing user nickname and password.
+        description: A JSON object containing admin nickname and password.
         content:
           application/json:
             schema:
