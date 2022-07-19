@@ -8,7 +8,7 @@
     "build:watch": "babel src --out-dir build --extensions .ts --copy-files --watch",
     "build:prod": "babel src --out-dir build --extensions .ts --copy-files --minified",
     "dev": "concurrently \"npm run build:watch\" \"nodemon build/server.js\"",
-    "create:user": "node build/bin/create-user.js"
+    "create:admin": "node build/bin/create-admin.js"
   },
   "author": "Gio Atanelishvili",
   "license": "ISC",
