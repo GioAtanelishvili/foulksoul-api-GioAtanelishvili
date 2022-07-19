@@ -7,6 +7,7 @@ export {
   uploadAvatar,
 } from './band-member-controllers'
 export {
+  getSocialMedia,
   addSocialMedia,
   editSocialMedia,
   deleteSocialMedia,

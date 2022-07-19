@@ -6,6 +6,16 @@ import { extractImagePath, recoverImagePath } from 'utils'
 import { validateObjectId } from 'utils'
 import { SocialMedia } from 'models'
 
+export const getSocialMedia: RequestHandler = async (_req, res, next) => {
+  try {
+    const socialMedia = await SocialMedia.find({}, '-__v')
+
+    return res.status(200).json(socialMedia)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const addSocialMedia: RequestHandler = async (req, res, next) => {
   const { value: data, error } = socialMediaSchema.validate(req.body)
 

@@ -7,6 +7,7 @@ import {
   editBandMember,
   deleteBandMember,
   uploadAvatar,
+  getSocialMedia,
   addSocialMedia,
   editSocialMedia,
   deleteSocialMedia,
@@ -33,6 +34,7 @@ router
 
 router
   .route('/band/social-media')
+  .get(getSocialMedia)
   .post(addSocialMedia)
   .patch(editSocialMedia)
   .delete(deleteSocialMedia)
