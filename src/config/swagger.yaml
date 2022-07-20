@@ -7,7 +7,7 @@ info:
 servers:
   - url: https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api
     description: Production server
-  - url: http://localhost:3000/api
+  - url: http://localhost:8080/api
     description: Local server
 
 components:
@@ -136,8 +136,6 @@ paths:
       summary: Returns all members of the band.
       parameters:
         - $ref: '#/components/parameters/pageQuery'
-      security:
-        - bearerAuth: []
       tags:
         - 'Band Members'
       responses:
@@ -247,8 +245,6 @@ paths:
   /band/social-media:
     get:
       summary: Returns band's social media.
-      security:
-        - bearerAuth: []
       tags:
         - 'Social Media'
       responses:
@@ -359,8 +355,6 @@ paths:
   /band:
     get:
       summary: Returns details about band.
-      security:
-        - bearerAuth: []
       tags:
         - 'Band Details'
       responses:

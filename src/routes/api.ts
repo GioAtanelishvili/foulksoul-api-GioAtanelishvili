@@ -22,9 +22,13 @@ const router = Router()
 
 router.post('/login', login)
 
-router.use(authMiddleware)
-
 router.get('/band/members', getAllBandMembers)
+
+router.get('/band/social-media', getSocialMedia)
+
+router.get('/band', getBandDetails)
+
+router.use(authMiddleware)
 
 router
   .route('/band/member')
@@ -34,12 +38,10 @@ router
 
 router
   .route('/band/social-media')
-  .get(getSocialMedia)
   .post(addSocialMedia)
   .patch(editSocialMedia)
   .delete(deleteSocialMedia)
 
-router.get('/band', getBandDetails)
 router.put('/band/info', editBandInfo)
 
 router.put('/band/member/avatar', fileHandlerMiddleware('avatar'), uploadAvatar)
