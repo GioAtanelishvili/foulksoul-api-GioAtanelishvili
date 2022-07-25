@@ -174,7 +174,22 @@ paths:
               $ref: '#/components/schemas/BandMember'
       responses:
         '201':
-          description: OK
+          description: New member populated with its ID.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: some-ID
+                  - $ref: '#/components/schemas/BandMember'
+                  - type: object
+                    properties:
+                      avatarPath:
+                        type: string
+                        example: path/to/avatar.png
         '422':
           description: Invalid data
 

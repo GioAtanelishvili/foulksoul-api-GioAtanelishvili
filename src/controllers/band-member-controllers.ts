@@ -34,10 +34,13 @@ export const addBandMember: RequestHandler = async (req, res, next) => {
   }
 
   const bandMember = new BandMember(value)
+  const createdMember = Object.assign(bandMember)
 
   try {
     await bandMember.save()
-    res.status(201).json('Member was added successfully.')
+    res
+      .status(201)
+      .json({ message: 'Member was added successfully.', createdMember })
   } catch (err) {
     next(err)
   }
