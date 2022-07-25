@@ -2,8 +2,7 @@ import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
 import { socialMediaSchema } from 'schemas'
-import { extractImagePath, recoverImagePath } from 'utils'
-import { validateObjectId } from 'utils'
+import { extractImagePath, recoverImagePath, validateObjectId } from 'utils'
 import { SocialMedia } from 'models'
 
 export const getSocialMedia: RequestHandler = async (_req, res, next) => {
@@ -73,7 +72,8 @@ export const deleteSocialMedia: RequestHandler = async (req, res, next) => {
     const { iconPath } = socialMedia
 
     if (iconPath) {
-      await unlink(iconPath)
+      const recoveredPath = recoverImagePath(iconPath)
+      await unlink(recoveredPath)
     }
 
     return res.status(200).json('Social media was deleted successflly.')
