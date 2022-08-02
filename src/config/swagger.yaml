@@ -34,13 +34,6 @@ components:
         type: string
       description: Social media ID
 
-    pageQuery:
-      in: query
-      name: page
-      schema:
-        type: number
-      description: Page number
-
   schemas:
     BandMember:
       type: object
@@ -134,8 +127,6 @@ paths:
   /band/members:
     get:
       summary: Returns all members of the band.
-      parameters:
-        - $ref: '#/components/parameters/pageQuery'
       tags:
         - 'Band Members'
       responses:
@@ -174,22 +165,30 @@ paths:
               $ref: '#/components/schemas/BandMember'
       responses:
         '201':
-          description: New member populated with its ID.
+          description: Succes message and new member populated with its ID.
           content:
             application/json:
               schema:
-                allOf:
-                  - type: object
-                    properties:
-                      _id:
-                        type: string
-                        example: some-ID
-                  - $ref: '#/components/schemas/BandMember'
-                  - type: object
-                    properties:
-                      avatarPath:
-                        type: string
-                        example: path/to/avatar.png
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: succes message
+                  createdMember:
+                    type: object
+                    allOf:
+                      - type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: some-ID
+                      - $ref: '#/components/schemas/BandMember'
+                      - type: object
+                        properties:
+                          avatarPath:
+                            type: string
+                            example: path/to/avatar.png
+
         '422':
           description: Invalid data
 
@@ -253,7 +252,19 @@ paths:
                   format: binary
       responses:
         '200':
-          description: OK
+          description: Success message with path to avatar
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success message
+                  avatarPath:
+                    type: string
+                    example: path/to/avatar.png
+
         '422':
           description: Invalid file
 
@@ -298,7 +309,29 @@ paths:
               $ref: '#/components/schemas/SocialMedia'
       responses:
         '201':
-          description: OK
+          description: Succes message and new social media item populated with its ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: succes message
+                  createdMember:
+                    type: object
+                    allOf:
+                      - type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: some-ID
+                      - $ref: '#/components/schemas/SocialMedia'
+                      - type: object
+                        properties:
+                          iconPath:
+                            type: string
+                            example: path/to/icon.png
         '422':
           description: Invalid data
 
@@ -363,7 +396,18 @@ paths:
                   format: binary
       responses:
         '200':
-          description: OK
+          description: Success message with path to icon
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success message
+                  iconPath:
+                    type: string
+                    example: path/to/icon.png
         '422':
           description: Invalid file
 
@@ -434,6 +478,17 @@ paths:
                   format: binary
       responses:
         '200':
-          description: OK
+          description: 'Success message with path to image'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success message
+                  iconPath:
+                    type: string
+                    example: path/to/image.png
         '422':
           description: Invalid file
