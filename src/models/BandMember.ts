@@ -1,13 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-export interface IBandMember {
-  name: string
-  instrument: string
-  orbitRadius: number
-  color: string
-  biography: string
-  avatarPath: string
-}
+import { IBandMember } from 'types'
 
 const bandMemberSchema = new Schema<IBandMember>({
   name: {

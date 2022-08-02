@@ -1,9 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-export interface IAdmin {
-  nickname: string
-  password: string
-}
+import { IAdmin } from 'types'
 
 const userSchema = new Schema<IAdmin>({
   nickname: {

@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt'
 import Joi from 'joi'
 
-import { Admin, IAdmin } from 'models'
+import { Admin } from 'models'
+import { IAdmin } from 'types'
 
 export const nicknameSchema = Joi.string()
   .required()

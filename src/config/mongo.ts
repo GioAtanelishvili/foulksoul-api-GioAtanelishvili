@@ -4,10 +4,21 @@ import dotenv from 'dotenv'
 const connectMongo = async () => {
   dotenv.config()
 
+  const {
+    MONGO_PROTOCOL,
+    MONGO_USER,
+    MONGO_PASSWORD,
+    MONGO_CLUSTER,
+    MONGO_HOST,
+    MONGO_PORT,
+    MONGO_DATABASE,
+    MONGO_PARAMS,
+  } = process.env
+
   const mongoUri =
-    process.env.MONGO_PROTOCOL === 'mongodb+srv'
-      ? `${process.env.MONGO_PROTOCOL}://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}.${process.env.MONGO_HOST}/${process.env.MONGO_DATABASE}?${process.env.MONGO_PARAMS}`
-      : `${process.env.MONGO_PROTOCOL}://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`
+    MONGO_PROTOCOL === 'mongodb+srv'
+      ? `${MONGO_PROTOCOL}://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER}.${MONGO_HOST}/${MONGO_DATABASE}?${MONGO_PARAMS}`
+      : `${MONGO_PROTOCOL}://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`
 
   try {
     return await mongoose.connect(mongoUri)

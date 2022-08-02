@@ -1,20 +1,20 @@
 import { Router } from 'express'
 
 import {
-  login,
   getAllBandMembers,
-  addBandMember,
-  editBandMember,
+  deleteSocialMedia,
   deleteBandMember,
-  uploadAvatar,
+  uploadBandImage,
+  editSocialMedia,
+  editBandMember,
   getSocialMedia,
   addSocialMedia,
-  editSocialMedia,
-  deleteSocialMedia,
-  uploadIcon,
   getBandDetails,
+  addBandMember,
+  uploadAvatar,
   editBandInfo,
-  uploadBandImage,
+  uploadIcon,
+  login,
 } from 'controllers'
 import { authMiddleware, fileHandlerMiddleware } from 'middlewares'
 
@@ -23,9 +23,7 @@ const router = Router()
 router.post('/login', login)
 
 router.get('/band/members', getAllBandMembers)
-
 router.get('/band/social-media', getSocialMedia)
-
 router.get('/band', getBandDetails)
 
 router.use(authMiddleware)

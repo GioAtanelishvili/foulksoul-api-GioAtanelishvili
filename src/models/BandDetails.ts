@@ -1,9 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-export interface IBandDetails {
-  info: string
-  imagePath: string
-}
+import { IBandDetails } from 'types'
 
 const bandDetailsSchema = new Schema<IBandDetails>({
   info: {

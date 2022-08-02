@@ -1,10 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-export interface ISocialMedia {
-  name: string
-  url: string
-  iconPath: string
-}
+import { ISocialMedia } from 'types'
 
 const socialMediaSchema = new Schema<ISocialMedia>({
   name: {
