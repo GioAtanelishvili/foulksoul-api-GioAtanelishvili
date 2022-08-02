@@ -1,20 +1,4 @@
 export { login } from './auth-controllers'
-export {
-  getAllBandMembers,
-  addBandMember,
-  editBandMember,
-  deleteBandMember,
-  uploadAvatar,
-} from './band-member-controllers'
-export {
-  getSocialMedia,
-  addSocialMedia,
-  editSocialMedia,
-  deleteSocialMedia,
-  uploadIcon,
-} from './social-media-controllers'
-export {
-  getBandDetails,
-  editBandInfo,
-  uploadBandImage,
-} from './band-controllers'
+export * from './social-media-controllers'
+export * from './band-member-controllers'
+export * from './band-controllers'

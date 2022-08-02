@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
-import { socialMediaSchema } from 'schemas'
 import { extractImagePath, recoverImagePath, validateObjectId } from 'utils'
+import { socialMediaSchema } from 'schemas'
 import { SocialMedia } from 'models'
 
 export const getSocialMedia: RequestHandler = async (_req, res, next) => {
@@ -22,10 +22,15 @@ export const addSocialMedia: RequestHandler = async (req, res, next) => {
     return res.status(422).json(error.details)
   }
 
+  const socialMedia = new SocialMedia(data)
+  const { _id, name, url } = Object.assign(socialMedia)
+
   try {
-    const socialMedia = new SocialMedia(data)
     await socialMedia.save()
-    return res.status(201).json('Social media was added successfully.')
+    return res.status(201).json({
+      message: 'Social media was added successfully.',
+      createdSocialMediaItem: { _id, name, url },
+    })
   } catch (err) {
     next(err)
   }
@@ -51,7 +56,7 @@ export const editSocialMedia: RequestHandler = async (req, res, next) => {
 
     const editedSocialMedia = Object.assign(socialMedia, data)
     await editedSocialMedia.save()
-    return res.status(200).json('Social media was updated successflly.')
+    return res.status(200).json('Social media was updated successfully.')
   } catch (err) {
     next(err)
   }
@@ -76,7 +81,7 @@ export const deleteSocialMedia: RequestHandler = async (req, res, next) => {
       await unlink(recoveredPath)
     }
 
-    return res.status(200).json('Social media was deleted successflly.')
+    return res.status(200).json('Social media was deleted successfully.')
   } catch (err) {
     next(err)
   }
@@ -108,8 +113,13 @@ export const uploadIcon: RequestHandler = async (req, res, next) => {
     }
 
     socialMedia.iconPath = extractImagePath(file.path)
+    const { iconPath } = socialMedia
+
     await socialMedia.save()
-    return res.status(200).json('Icon was updated successfully.')
+    return res.status(200).json({
+      message: 'Icon was updated successfully.',
+      iconPath,
+    })
   } catch (err) {
     next(err)
   }

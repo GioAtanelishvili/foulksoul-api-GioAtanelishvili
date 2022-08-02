@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express'
 import { unlink } from 'fs/promises'
 
-import { bandInfoSchema } from 'schemas'
 import { extractImagePath, recoverImagePath } from 'utils'
+import { bandInfoSchema } from 'schemas'
 import { BandDetails } from 'models'
 
 export const getBandDetails: RequestHandler = async (_req, res, next) => {
@@ -57,12 +57,15 @@ export const uploadBandImage: RequestHandler = async (req, res, next) => {
 
       const recoveredPath = recoverImagePath(prevImagePath)
       await unlink(recoveredPath)
-    } else {
-      band.imagePath = extractImagePath(file.path)
     }
 
+    band.imagePath = extractImagePath(file.path)
+    const { imagePath } = band
+
     await band.save()
-    return res.status(200).json('Band image was added successfully')
+    return res
+      .status(200)
+      .json({ message: 'Band image was added successfully', imagePath })
   } catch (err) {
     next(err)
   }

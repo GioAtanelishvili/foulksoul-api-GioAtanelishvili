@@ -34,13 +34,16 @@ export const addBandMember: RequestHandler = async (req, res, next) => {
   }
 
   const bandMember = new BandMember(value)
-  const createdMember = Object.assign(bandMember)
+  const { _id, name, instrument, orbitRadius, color, biography } = bandMember
 
   try {
     await bandMember.save()
-    res
+    return res
       .status(201)
-      .json({ message: 'Member was added successfully.', createdMember })
+      .json({
+        message: 'Member was created successfully.',
+        createdMember: { _id, name, instrument, orbitRadius, color, biography },
+      })
   } catch (err) {
     next(err)
   }
@@ -87,7 +90,8 @@ export const deleteBandMember: RequestHandler = async (req, res, next) => {
     const { avatarPath } = bandMember
 
     if (avatarPath) {
-      await unlink(avatarPath)
+      const recoveredPath = recoverImagePath(avatarPath)
+      await unlink(recoveredPath)
     }
 
     return res.status(200).json('Member was deleted successfully')
@@ -122,8 +126,13 @@ export const uploadAvatar: RequestHandler = async (req, res, next) => {
     }
 
     bandMember.avatarPath = extractImagePath(file.path)
+    const { avatarPath } = bandMember
+
     await bandMember.save()
-    return res.status(200).json('Avatar was updated successfully.')
+    return res.status(200).json({
+      message: 'Avatar was updated successfully.',
+      avatarPath,
+    })
   } catch (err) {
     next(err)
   }
