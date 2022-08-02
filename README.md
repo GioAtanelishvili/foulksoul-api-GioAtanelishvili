@@ -1,6 +1,6 @@
 <h1>FolkSoul API</h1>
 <p>Platform for musical band, where you can get information about the band and its members</p>
-<p>Production URL: <a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api" target="_blank">https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api</a></p>
+<p>Production URL: <a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge" target="_blank">https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge</a></p>
 
 <section>
 <h2>Table of Contents</h2>
@@ -125,6 +125,6 @@
     <h2>Resources</h2>
     <ul>
         <li><a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api-docs" target="_blank">API specification</a>
-        <li>Application URL: <a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api" target="_blank">https://employee-companies-api.giorgi-atanelashvili.redberryinternship.ge/api</a></li>
+        <li>Application URL: <a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge" target="_blank">https://employee-companies-api.giorgi-atanelashvili.redberryinternship.ge/api</a></li>
     </ul>
 </section>
