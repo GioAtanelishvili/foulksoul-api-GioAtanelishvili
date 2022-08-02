@@ -60,7 +60,7 @@ const createAdminSchema = async (
   return Joi.object({
     nickname: nicknameSchema,
     password: passwordSchema,
-  }).custom(checkAdminValidity(admin, isPasswordValid))
+  }).custom(checkAdminValidity(admin, isPasswordValid), 'admin validation')
 }
 
 export default createAdminSchema

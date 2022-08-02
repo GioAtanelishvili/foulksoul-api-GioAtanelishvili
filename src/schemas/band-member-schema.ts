@@ -17,7 +17,7 @@ const bandMemberSchema = Joi.object({
     .required()
     .min(2)
     .trim()
-    .pattern(/^[\u10D0-\u10F0 ]+[\u10D0-\u10F0]+$/)
+    .pattern(/^[\u10D0-\u10F0 ]+$/)
     .messages({
       'string.base': 'Instrument field should be a string.',
       'string.required': 'Instrument field is required.',
@@ -34,7 +34,7 @@ const bandMemberSchema = Joi.object({
     .required()
     .trim()
     .length(7)
-    .pattern(/^#([0-9a-fA-F]){6}$/)
+    .pattern(/^#(([0-9a-f]){6}$|([0-9A-F]){6}$)/)
     .uppercase()
     .messages({
       'string.base': 'Color should be a string.',
@@ -45,9 +45,7 @@ const bandMemberSchema = Joi.object({
   biography: Joi.string()
     .required()
     .trim()
-    .pattern(
-      /^[\u10D0-\u10F0,.?!'"-_@0-9 ]+[\u10D0-\u10F0]+[\u10D0-\u10F0,.?!'"-_@0-9]+$/
-    )
+    .pattern(/^[\u10D0-\u10F0,.?!'"-_@0-9\s]+$/)
     .messages({
       'string.base': 'Biography should be a string.',
       'string.required': 'Biography is required.',
