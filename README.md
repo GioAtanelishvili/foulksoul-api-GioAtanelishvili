@@ -73,6 +73,12 @@
                 <li>Add/Update social media icon</li>
             </ul>
         </li>
+        <li>Band Details
+            <ul>
+                <li>Edit info about the band</li>
+                <li>Add/Update band image</li>
+            </ul>
+        </li>
     </ul>
     For more detailed info, check <a href="https://folksoul-api.giorgi-atanelashvili.redberryinternship.ge/api-docs" target="_blank">API specification</a>
 <section>
