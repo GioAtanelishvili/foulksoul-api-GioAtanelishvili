@@ -49,8 +49,7 @@ export const uploadBandImage: RequestHandler = async (req, res, next) => {
   }
 
   try {
-    const [band] =
-      (await BandDetails.find()) || new BandDetails({ imagePath: file.path })
+    const [band = new BandDetails()] = await BandDetails.find()
 
     if (band.imagePath) {
       const { imagePath: prevImagePath } = band
