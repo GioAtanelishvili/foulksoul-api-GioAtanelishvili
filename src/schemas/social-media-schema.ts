@@ -1,14 +1,14 @@
 import Joi from 'joi'
 
 const socialMediaSchema = Joi.object({
-  name: Joi.string().required().lowercase().trim().alphanum().min(2).messages({
+  name: Joi.string().required().lowercase().trim().min(2).messages({
     'string.base': 'Social media name should be a string.',
     'string.required': 'Social media name is required.',
-    'string.alphanum': 'Social media name should be alphanumeric.',
     'string.min': 'Social media name should be at least 2 chars long.',
   }),
   url: Joi.string()
     .required()
+    .trim()
     .uri({
       scheme: ['https'],
     })

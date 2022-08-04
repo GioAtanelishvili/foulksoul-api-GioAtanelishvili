@@ -17,11 +17,11 @@ const bandMemberSchema = Joi.object({
     .required()
     .min(2)
     .trim()
-    .pattern(/^[\u10D0-\u10F0 ]+$/)
+    .pattern(/^[\u10D0-\u10F0]+$/)
     .messages({
       'string.base': 'Instrument field should be a string.',
       'string.required': 'Instrument field is required.',
-      'string.min': 'Instrument field should be at least 3 chars long.',
+      'string.min': 'Instrument field should be at least 2 chars long.',
       'string.pattern.base':
         'Instrument field should contain only Georgian letters.',
     }),

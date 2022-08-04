@@ -38,12 +38,10 @@ export const addBandMember: RequestHandler = async (req, res, next) => {
 
   try {
     await bandMember.save()
-    return res
-      .status(201)
-      .json({
-        message: 'Member was created successfully.',
-        createdMember: { _id, name, instrument, orbitRadius, color, biography },
-      })
+    return res.status(201).json({
+      message: 'Member was created successfully.',
+      createdMember: { _id, name, instrument, orbitRadius, color, biography },
+    })
   } catch (err) {
     next(err)
   }
