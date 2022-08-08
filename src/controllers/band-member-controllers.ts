@@ -104,6 +104,7 @@ export const uploadAvatar: RequestHandler = async (req, res, next) => {
   if (!file) {
     return res.status(422).json('Uploaded file is invalid.')
   }
+  console.log(file.size)
 
   const { id: bandMemberId } = req.query
 

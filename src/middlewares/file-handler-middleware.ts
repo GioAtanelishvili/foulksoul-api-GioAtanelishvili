@@ -42,7 +42,11 @@ const fileFilter = (
   }
 }
 
-const upload = multer({ storage, fileFilter })
+const limits = {
+  fileSize: 1048576,
+}
+
+const upload = multer({ storage, fileFilter, limits })
 
 const fileHandlerMiddleware = (fieldName: 'avatar' | 'icon' | 'image') => {
   return upload.single(fieldName)
